@@ -162,6 +162,8 @@ button, a.secondary, a.ghost {
 }
 .confirm-details dd {
   margin: 0;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 .share {
@@ -202,6 +204,9 @@ button, a.secondary, a.ghost {
     repeating-linear-gradient(45deg, #fff7fb 0 12px, #fff0f6 12px 24px);
   line-height: 1.6;
   font-size: 18px;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  word-break: break-word;
 }
 
 #hearts {
@@ -249,3 +254,4 @@ button, a.secondary, a.ghost {
     transform: translate3d(0, 110vh, 0) rotate(315deg);
   }
 }
+
