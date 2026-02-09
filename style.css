@@ -165,6 +165,11 @@ button, a.secondary, a.ghost {
   overflow-wrap: anywhere;
   word-break: break-word;
 }
+#confirm-message {
+  max-height: 40vh;
+  overflow: auto;
+  padding-right: 6px;
+}
 
 .share {
   display: grid;
@@ -207,6 +212,9 @@ button, a.secondary, a.ghost {
   white-space: pre-wrap;
   overflow-wrap: anywhere;
   word-break: break-word;
+  max-height: 60vh;
+  overflow: auto;
+  padding-right: 6px;
 }
 
 #hearts {
@@ -254,4 +262,3 @@ button, a.secondary, a.ghost {
     transform: translate3d(0, 110vh, 0) rotate(315deg);
   }
 }
-
