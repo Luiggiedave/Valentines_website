@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Valentine Messages</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div id="hearts"></div>
+  <main class="app">
+    <header class="brand">
+      <h1>Valentine Messages</h1>
+      <p>Share a heartfelt note with a lovely link</p>
+    </header>
+
+    <section id="form-view" class="card view active" aria-labelledby="form-title">
+      <h2 id="form-title">Compose</h2>
+      <form id="message-form" novalidate>
+        <div class="field">
+          <label for="senderName">From</label>
+          <input id="senderName" name="senderName" type="text" placeholder="Your name" required maxlength="60">
+        </div>
+        <div class="field">
+          <label for="message">Message</label>
+          <textarea id="message" name="message" placeholder="Write your message" required rows="6" maxlength="500"></textarea>
+        </div>
+        <div class="field">
+          <label for="date">Date</label>
+          <input id="date" name="date" type="date" required>
+        </div>
+        <div class="actions">
+          <button type="button" id="to-confirm" class="primary">Next</button>
+        </div>
+      </form>
+    </section>
+
+    <section id="confirm-view" class="card view" aria-labelledby="confirm-title">
+      <h2 id="confirm-title">Confirm</h2>
+      <div class="confirm-details">
+        <dl>
+          <dt>From</dt>
+          <dd id="confirm-name"></dd>
+          <dt>Date</dt>
+          <dd id="confirm-date"></dd>
+          <dt>Message</dt>
+          <dd id="confirm-message"></dd>
+        </dl>
+      </div>
+      <div class="actions">
+        <button type="button" id="edit" class="ghost">Edit</button>
+        <button type="button" id="confirm" class="primary">Generate Link</button>
+      </div>
+      <div id="share" class="share hidden">
+        <input id="share-url" type="text" readonly>
+        <button type="button" id="copy" class="secondary">Copy</button>
+        <a id="open-link" class="secondary" target="_blank" rel="noopener">Open</a>
+      </div>
+    </section>
+
+    <section id="message-view" class="card view" aria-labelledby="message-title">
+      <h2 id="message-title">A Message For You</h2>
+      <div class="message-to">
+        <span class="label">From</span>
+        <span id="view-name" class="value"></span>
+      </div>
+      <div class="message-date">
+        <span class="label">Date</span>
+        <span id="view-date" class="value"></span>
+      </div>
+      <article id="view-message" class="message-content"></article>
+      <div class="actions">
+        <a href="./" class="ghost">Write your own</a>
+      </div>
+    </section>
+  </main>
+
+  <script src="script.js" defer></script>
+</body>
+</html>
