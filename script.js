@@ -42,13 +42,18 @@ function createHearts(count = 28) {
 }
 
 function toViewMode(params) {
-  const name = params.get("name") || "";
-  const message = params.get("message") || "";
-  const date = params.get("date") || "";
-  qs("#view-name").textContent = name;
-  qs("#view-date").textContent = formatDate(date);
-  qs("#view-message").textContent = message;
-  setActiveView("message-view");
+  const encoded = params.get("data");
+  if (!encoded) return;
+  try {
+    const decoded = atob(encoded);
+    const { name, message, date } = JSON.parse(decoded);
+    qs("#view-name").textContent = name || "";
+    qs("#view-date").textContent = formatDate(date || "");
+    qs("#view-message").textContent = message || "";
+    setActiveView("message-view");
+  } catch (e) {
+    // Invalid base64 or JSON, remain on the form view
+  }
 }
 
 function toConfirm() {
@@ -76,12 +81,10 @@ function toEdit() {
 }
 
 function generateLink() {
-  const base = new URL("index.html", location.href).toString();
-  const url = new URL(base);
-  url.searchParams.set("mode", "view");
-  url.searchParams.set("name", state.name);
-  url.searchParams.set("message", state.message);
-  url.searchParams.set("date", state.date);
+  const data = { name: state.name, message: state.message, date: state.date };
+  const encoded = btoa(JSON.stringify(data));
+  const url = new URL("index.html", location.href);
+  url.searchParams.set("data", encoded);
   const href = url.toString();
   qs("#share-url").value = href;
   qs("#open-link").setAttribute("href", href);
@@ -99,7 +102,7 @@ async function copyLink() {
 document.addEventListener("DOMContentLoaded", () => {
   createHearts(32);
   const params = new URLSearchParams(location.search);
-  if (params.get("mode") === "view") {
+  if (params.has("data")) {
     toViewMode(params);
   } else {
     setActiveView("form-view");
